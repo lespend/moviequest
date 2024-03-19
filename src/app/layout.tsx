@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { ThemeProvider } from "next-themes";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header/>
+          <Navbar/>
           {children}
         </ThemeProvider>
       </body>
