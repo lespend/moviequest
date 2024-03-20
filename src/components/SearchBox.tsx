@@ -6,16 +6,16 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const SearchBox = () => {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState('');
   const router = useRouter();
-  function handleSubmit(e) {
-    router.push(`/search/${search}`);
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    router.push(`/search/${search}`);
   }
 
   return (
     <form className="flex gap-2 w-full" onSubmit={handleSubmit}>
-      <Input className="w-full" type="text" placeholder="Поиск..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+      <Input className="w-full" type="text" placeholder="Поиск..." value={search} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}/>
       <Button>Поиск</Button>
     </form>
   );

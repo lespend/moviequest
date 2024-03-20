@@ -9,8 +9,14 @@ import {
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
+import { IMovie } from "@/types/movie";
+import { FC } from "react";
 
-const MovieCard = ({ result }) => {
+interface MovieCardProps {
+  result: IMovie;
+}
+
+const MovieCard: FC<MovieCardProps> = ({ result }) => {
   return (
     <Link href={`/movie/${result.kinopoiskId}`}>
       <Card className="hover:scale-105 transition-transform">

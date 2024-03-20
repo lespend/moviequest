@@ -1,6 +1,7 @@
 
 import Results from "@/components/Results";
 import { instance } from "@/lib/http";
+import { FC } from "react";
 
 async function fetchFilms(genre: string, limit: number) {
   switch (genre) {
@@ -20,8 +21,14 @@ async function fetchFilms(genre: string, limit: number) {
   }
 }
 
-const Page = async ({ searchParams }) => {
-  const genre = searchParams.genre || 'fetchTrending';
+interface PageProps {
+  searchParams: {
+    genre?: string;
+  }
+}
+
+const Page: FC<PageProps> = async ({ searchParams }) => {
+  const genre = searchParams.genre ?? 'fetchTrending';
   const res = await fetchFilms(genre, 10);
   const data = await res?.data.items;
 

@@ -1,5 +1,6 @@
 import Results from "@/components/Results";
 import { instance } from "@/lib/http";
+import { FC } from "react";
 
 async function fetchFilms(query: string, limit: number) {
   return await instance.get("/films/search-by-keyword", {
@@ -10,7 +11,13 @@ async function fetchFilms(query: string, limit: number) {
   });
 }
 
-const Search = async ({ params }) => {
+interface SearchProps {
+  params: {
+    query: string;
+  }
+}
+
+const Search: FC<SearchProps> = async ({ params }) => {
   const query = params.query ?? "";
   const res = await fetchFilms(query, 10);
   const data = await res?.data.items;

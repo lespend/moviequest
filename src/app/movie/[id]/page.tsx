@@ -2,8 +2,15 @@ import { Badge } from "@/components/ui/badge";
 import { instance } from "@/lib/http";
 import { IMovieOne } from "@/types/movie";
 import Image from "next/image";
+import { FC } from "react";
 
-const MoviePage = async ({ params }) => {
+interface MoviePageProps {
+  params: {
+    id: string;
+  }
+}
+
+const MoviePage: FC<MoviePageProps> = async ({ params }) => {
   const { id } = params;
   const res = await instance.get<IMovieOne>(`/films/${id}`);
   const data = await res.data;

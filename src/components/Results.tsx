@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { FC } from "react";
 import MovieCard from "./MovieCard";
+import { IMovie } from "@/types/movie";
 
 interface ResultsProps {
-  results: any;
+  results: IMovie[];
 }
 
 const Results: FC<ResultsProps> = ({ results }) => {
