@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -26,9 +27,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header/>
-          <Navbar/>
-          {children}
+          <Suspense>
+            <Header />
+            <Navbar />
+            {children}
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

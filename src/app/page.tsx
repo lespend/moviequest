@@ -27,7 +27,7 @@ interface PageProps {
   }
 }
 
-const Page: FC<PageProps> = async ({ searchParams }) => {
+const Page: FC<PageProps> = async ({ searchParams={} }) => {
   const genre = searchParams.genre ?? 'fetchTrending';
   const res = await fetchFilms(genre, 10);
   const data = await res?.data.items;
