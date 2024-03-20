@@ -1,19 +1,19 @@
 
+import Results from "@/components/Results";
 import { instance } from "@/lib/http";
 
 async function fetchFilms(genre: string, limit: number) {
   switch (genre) {
     case 'fetchTrending':
-      return await instance.get('/movie', {
+      return await instance.get('/films/collections', {
         params: {
-          ['sort-field']: 'rating.kp',
-          year: 2024,
+          limit,
         }
       })
     case 'fetchTopRating':
-      return await instance.get('/movie', {
+      return await instance.get('/films/collections', {
         params: {
-          lists: 'top250',
+          type: 'TOP_250_MOVIES',
           limit,
         }
       })
@@ -23,10 +23,14 @@ async function fetchFilms(genre: string, limit: number) {
 const Page = async ({ searchParams }) => {
   const genre = searchParams.genre || 'fetchTrending';
   const res = await fetchFilms(genre, 10);
-  const data = await res?.data;
-  
+  const data = await res?.data.items;
+
+  console.log(data);
+
   return (
-    <div>salam</div>
+    <div className="max-w-6xl px-4 mx-auto">
+      <Results results={data}/>
+    </div>
   );
 }
  
