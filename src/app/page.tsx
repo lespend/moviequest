@@ -6,13 +6,13 @@ import { FC } from "react";
 async function fetchFilms(genre: string, limit: number) {
   switch (genre) {
     case 'fetchTrending':
-      return await instance.get('/films/collections', {
+      return await instance.get('/v2.2/films/collections', {
         params: {
           limit,
         }
       })
     case 'fetchTopRating':
-      return await instance.get('/films/collections', {
+      return await instance.get('/v2.2/films/collections', {
         params: {
           type: 'TOP_250_MOVIES',
           limit,

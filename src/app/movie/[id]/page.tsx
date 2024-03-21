@@ -12,7 +12,7 @@ interface MoviePageProps {
 
 const MoviePage: FC<MoviePageProps> = async ({ params }) => {
   const { id } = params;
-  const res = await instance.get<IMovieOne>(`/films/${id}`);
+  const res = await instance.get<IMovieOne>(`/v2.2/films/${id}`);
   const data = await res.data;
 
   console.log(data);

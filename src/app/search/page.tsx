@@ -3,24 +3,26 @@ import { instance } from "@/lib/http";
 import { FC } from "react";
 
 async function fetchFilms(query: string, limit: number) {
-  return await instance.get("/films/search-by-keyword", {
+  let res = await instance.get("/v2.1/films/search-by-keyword", {
     params: {
       keyword: query,
       limit,
     },
   });
+  console.log(res, query);
+  return res;
 }
 
 interface SearchProps {
-  params: {
+  searchParams: {
     query: string;
   }
 }
 
-const Search: FC<SearchProps> = async ({ params }) => {
-  const query = params.query ?? "";
+const Search: FC<SearchProps> = async ({ searchParams }) => {
+  const query = searchParams.query ?? "";
   const res = await fetchFilms(query, 10);
-  const data = await res?.data.items;
+  const data = await res?.data.films;
 
   return (
     <div className="max-w-6xl px-4 mx-auto">

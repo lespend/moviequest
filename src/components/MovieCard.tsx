@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Skeleton } from "./ui/skeleton";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
@@ -26,6 +27,7 @@ const MovieCard: FC<MovieCardProps> = ({ result }) => {
             alt="Постер"
             width={360}
             height={540}
+            loading="eager"
           />
           <CardTitle className="text-2xl pt-4">{result.nameRu}</CardTitle>
           <CardDescription>Год выпуска: {result.year}</CardDescription>
